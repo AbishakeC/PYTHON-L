@@ -1,0 +1,204 @@
+✅ Step 1: Import Modules
+import os
+import shutil
+
+🔹 os
+
+Used for:
+
+Checking if path exists
+
+Listing files
+
+Joining paths
+
+Checking if item is folder
+
+🔹 shutil
+
+Used for:
+
+Moving files
+
+✅ Step 2: File Type Dictionary
+File_Types = {
+    "Images": [".jpg", ".jpeg", ".png"],
+    "Documents": [".pdf", ".docx", ".txt"],
+    "Videos": [".mp4", ".mkv"],
+    "Music": [".mp3", ".wav"],
+    "Archives": [".zip", ".rar"]
+}
+
+
+This dictionary contains:
+
+Folder Name	Extensions
+Images	.jpg .jpeg .png
+Documents	.pdf .docx .txt
+Videos	.mp4 .mkv
+Music	.mp3 .wav
+Archives	.zip .rar
+
+👉 Key = Folder name
+👉 Value = List of extensions
+
+✅ Step 3: Function Definition
+def file_automation(folder_path):
+
+
+This function takes:
+
+folder_path → The directory you want to organize
+
+✅ Step 4: Check If Path Exists
+if not os.path.exists(folder_path):
+    print("Enter correct path")
+    return
+
+What Happens?
+
+If path is invalid:
+
+Program stops immediately
+
+✅ Step 5: Get Files From Directory
+files = os.listdir(folder_path)
+
+
+Example directory before running:
+
+D:/MyFolder
+    photo.jpg
+    song.mp3
+    movie.mp4
+    resume.pdf
+
+
+files will be:
+
+['photo.jpg', 'song.mp3', 'movie.mp4', 'resume.pdf']
+
+✅ Step 6: Loop Through Each File
+for file in files:
+
+
+Now program checks each file one by one.
+
+✅ Step 7: Create Full File Path
+file_path = os.path.join(folder_path, file)
+
+
+Example:
+
+D:/MyFolder/photo.jpg
+
+✅ Step 8: Skip Folders
+if os.path.isdir(file_path):
+    continue
+
+
+If already a folder:
+
+Ignore it
+
+✅ Step 9: Split Name and Extension
+file_name, extension = os.path.splitext(file)
+
+
+Example:
+
+photo.jpg
+
+
+Becomes:
+
+file_name = "photo"
+extension = ".jpg"
+
+✅ Step 10: Match Extension With Dictionary
+for Folder_Name, extensions in File_Types.items():
+
+
+This means:
+
+Folder_Name = "Images"
+extensions = [".jpg", ".jpeg", ".png"]
+
+✅ Step 11: Check If Extension Matches
+if extension.lower() in extensions:
+
+
+If:
+
+".jpg" in [".jpg", ".jpeg", ".png"]
+
+
+Then match found ✅
+
+✅ Step 12: Create New Folder Path
+new_folder_path = os.path.join(folder_path, Folder_Name)
+
+
+Example:
+
+D:/MyFolder/Images
+
+✅ Step 13: Create Folder If Not Exists
+os.makedirs(new_folder_path)
+
+
+Creates:
+
+Images/
+
+✅ Step 14: Move File
+shutil.move(file_path, os.path.join(new_folder_path, file))
+
+
+Moves:
+
+photo.jpg → Images/photo.jpg
+
+✅ Step 15: Break Loop
+
+Stops checking other categories after match.
+
+
+
+START
+   ↓
+Take folder path input
+   ↓
+Check if path exists?
+   ↓
+   NO → Print error → STOP
+   YES
+   ↓
+List all files in directory
+   ↓
+Loop each file
+   ↓
+Is it a folder?
+   ↓
+YES → Skip
+NO
+   ↓
+Extract file extension
+   ↓
+Loop through File_Types
+   ↓
+Does extension match category?
+   ↓
+NO → Check next category
+YES
+   ↓
+Create category folder (if not exists)
+   ↓
+Move file to category folder
+   ↓
+Break loop
+   ↓
+Repeat for next file
+   ↓
+END
+
