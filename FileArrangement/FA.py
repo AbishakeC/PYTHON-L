@@ -34,7 +34,6 @@ def file_automation(folder_path):
         print("extention:",extention)
 
         for Folder_Name,extentions in File_Types.items():
-
             if extention.lower() in extentions:
 
                 new_Folder_process= os.path.join(folder_path,Folder_Name)
