@@ -1,6 +1,7 @@
 from QR.qr_generator import qr_generator
 from QR.qr_LogoEmbeded import add_logo
 from QR.CLI import run_cli
+from QR.Batch import generate_from_csv
 
 # QR generation
 data=input("Enter the Url: ")
@@ -19,5 +20,7 @@ print(f"logo edited.....{destination}")
 print("to be run in CLI......")
 run_cli()
 
-
+#for Batch Processing..CSV file
+csv_file=input("enter the CSV file Name: ")
+generate_from_csv(csv_file)
 
