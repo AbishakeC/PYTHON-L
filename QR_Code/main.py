@@ -23,4 +23,3 @@ run_cli()
 #for Batch Processing..CSV file
 csv_file=input("enter the CSV file Name: ")
 generate_from_csv(csv_file)
-
